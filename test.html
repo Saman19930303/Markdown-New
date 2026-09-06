@@ -1,0 +1,22 @@
+<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>V&F Library Test</title><body style="font-family:sans-serif;background:#071522;color:white;padding:24px">
+<h2>V&F Library Test</h2><pre id="o">Testing…</pre>
+<script>
+const out=document.getElementById('o');
+const tests=[
+ ['pdf.min.js','./vendor/pdf.min.js?v=67'],
+ ['pdf.worker.min.js','./vendor/pdf.worker.min.js?v=67'],
+ ['html2pdf.bundle.min.js','./vendor/html2pdf.bundle.min.js?v=67']
+];
+(async()=>{
+ let lines=[];
+ for(const [n,u] of tests){
+   try{
+     const r=await fetch(u,{cache:'no-store'});
+     const t=await r.text();
+     lines.push(`${n}: HTTP ${r.status}, ${t.length} bytes, starts: ${t.slice(0,35).replace(/\n/g,' ')}`);
+   }catch(e){lines.push(`${n}: ERROR ${e.message}`)}
+ }
+ out.textContent=lines.join('\n');
+})();
+</script></body>

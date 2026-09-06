@@ -324,9 +324,9 @@ th:nth-child(4),td:nth-child(4){text-align:left}
 
 <script>
 const LIBS = {
-  pdf:'./vendor/pdf.min.js',
-  worker:'./vendor/pdf.worker.min.js',
-  html2pdf:'./vendor/html2pdf.bundle.min.js'
+  pdf:'./vendor/pdf.min.js?v=67',
+  worker:'./vendor/pdf.worker.min.js?v=67',
+  html2pdf:'./vendor/html2pdf.bundle.min.js?v=67'
 };
 const libPromises={};
 
@@ -917,7 +917,7 @@ bootDashboard();
 </script>
 <script>
 if('serviceWorker' in navigator && location.protocol.startsWith('http')){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(console.error));
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=67').then(r=>r.update()).catch(console.error));
 }
 </script>
 </body>
